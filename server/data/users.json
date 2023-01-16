@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "name": "andrew",
+        "email": "andrew@mail.com",
+        "password": "andrew",
+        "role": "admin",
+        "phoneNumber": "0852612823",
+        "address": "jl. anggrek no 3"
+    },
+    {
+        "id": 2,
+        "name": "darwin",
+        "email": "darwin@mail.com",
+        "password": "darwin",
+        "role": "admin",
+        "phoneNumber": "0852623421",
+        "address": "jl. mawar no 9"
+    },
+    {
+        "id": 3,
+        "name": "angel",
+        "email": "angel@mail.com",
+        "password": "angel",
+        "role": "customer",
+        "phoneNumber": "0852623421",
+        "address": "jl. jeruk no 2"
+    },
+    {
+        "id": 4,
+        "name": "wawan",
+        "email": "wawan@mail.com",
+        "password": "wawan",
+        "role": "customer",
+        "phoneNumber": "085261238",
+        "address": "jl. delima no 81"
+    }
+    
+]
