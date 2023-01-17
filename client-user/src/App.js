@@ -1,17 +1,18 @@
-import Corosel from "./components/Corosel";
 import Navbar from "./components/Navbar";
 import "./App.css";
 import HomePage from "./views/HomePage";
-import DetailPage from "./views/DetailPage";
+import { RouterProvider } from 'react-router-dom'
+import router from "./routes";
 
-function App() {
+const App = () => {
      return (
-          <div className="putih" >
-               {/* <Navbar />
-               <Corosel />
-               <HomePage /> */}
-               <DetailPage />
-          </div>
+          // RouterProvider menerima sebuah props namanya router ambil dari routers/index.jsx yang tadi sudah kita buat
+          <RouterProvider router={router} />
+
+          // <div className="putih" >
+          //      <Navbar />
+          //      <HomePage />
+          // </div>
 
      );
 }

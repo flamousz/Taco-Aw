@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import Corosel from "../components/Corosel";
 import FoodCard from "../components/FoodCard";
 import useFetch from "../hooks/useFetch";
 
@@ -9,6 +9,7 @@ const HomePage = () => {
 
      return (
           <div className=" ">
+               <Corosel />
                <div className=" relative z-10">
                     <div className="main bg-white px-10 text-black">
                          <div className="py-28">
