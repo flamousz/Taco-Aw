@@ -1,31 +1,11 @@
 import { useEffect, useState } from "react";
 import FoodCard from "../components/FoodCard";
+import useFetch from "../hooks/useFetch";
 
 const HomePage = () => {
      // state untuk menampung user
-     const [users, setUsers] = useState([]);
-     const [isLoading, setIsLoading] = useState(true);
+     const [users, isLoading] = useFetch("http://localhost:3006/items")
 
-     useEffect(() => {
-          fetch("http://localhost:3006/items")
-               .then((response) => {
-                    if (!response.ok) {
-                         throw new Error("fecthing data failed");
-                    }
-
-                    return response.json();
-               })
-               .then((data) => {
-                    setUsers(data);
-                    console.log(data);
-               })
-               .catch((err) => {
-                    console.log(err);
-               })
-               .finally(() => {
-                    setIsLoading(false);
-               });
-     }, []);
 
      return (
           <div className=" ">
@@ -43,7 +23,7 @@ const HomePage = () => {
                                         {users.map((user) => {
                                              // return HTML (JSX)
                                              return (
-                                                  <FoodCard user={user} />
+                                                  <FoodCard key={user.id} user={user} />
                                              );
                                         })}
                                    </ul>
