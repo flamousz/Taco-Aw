@@ -6,7 +6,7 @@ export default function FoodCard({user}) {
              <figure>
                   <img
                        src={user.imgUrl}
-                       alt="Shoes"
+                       alt="Tacos"
                   />
              </figure>
              <div className="card-body">
