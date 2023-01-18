@@ -1,15 +1,16 @@
 import { useParams } from 'react-router-dom'
-import { useState , useEffect } from 'react'
+import { useEffect } from 'react'
+import { fetchDetailFoods } from '../stores/actions/foodAction';
+import { useSelector, useDispatch } from 'react-redux'
 
 const DetailPage = () => {
     const {id} = useParams()
-    const [food, setFood] = useState({})
+     let food = useSelector((state) => state.foodReducer.food)
+     let dispatch = useDispatch()
+
 
     useEffect(() => {
-        fetch(`http://localhost:3006/items/${id}`)
-            .then((res) => res.json())
-            .then((data) => setFood(data))
-            .catch((err) => console.log(err))
+          dispatch(fetchDetailFoods(id))   
     }, [id])
 
      return (

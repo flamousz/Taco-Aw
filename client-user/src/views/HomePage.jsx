@@ -3,13 +3,17 @@ import FoodCard from "../components/FoodCard";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFoods } from "../stores/actions/foodAction";
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
      let users = useSelector((state) => state.foodReducer.foods);
      let dispatch = useDispatch();
+     let navigate = useNavigate()
 
      useEffect(() => {
-          dispatch(fetchFoods());
+          dispatch(fetchFoods()).then((data)=> {
+               navigate("/")
+          }).catch((err) => {});
      }, []);
 
      return (
