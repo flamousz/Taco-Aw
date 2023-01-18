@@ -1,24 +1,24 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ListCard from "../components/ListCard";
-import useFetch from "../hooks/useFetch";
+import { fetchFoods } from "../stores/actions/foodAction";
 
 const FoodsListPage = () => {
-    const[items, isLoading] = useFetch("http://localhost:3006/items")
+     const items = useSelector((state) => state.foodReducer.foods);
+     const dispatch = useDispatch();
+
+     useEffect(() => {
+          dispatch(fetchFoods());
+     }, []);
 
      return (
-        <>
-        {!isLoading ? (
-            <div className="grid gap-4 grid-cols-3 bg-white mx-8 my-8 ">
-              {items.map((item) => {
-                return (
-                    <ListCard key={item.id} item={item} />
-                )
-              })}
-            </div>
-        ) : (
-            <h1>please wait</h1>
-        )}
-        
-        </>
+          <>
+               <div className="grid gap-4 grid-cols-3 bg-white mx-8 my-8 ">
+                    {items.map((item) => {
+                         return <ListCard key={item.id} item={item} />;
+                    })}
+               </div>
+          </>
      );
 };
 

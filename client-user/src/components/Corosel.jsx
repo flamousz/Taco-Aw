@@ -1,7 +1,15 @@
-import useFetch from "../hooks/useFetch";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFoods } from "../stores/actions/foodAction";
 
 function Corosel() {
-     const [users, isLoading] = useFetch("http://localhost:3006/items");
+     let users = useSelector((state) => state.foodReducer.foods)
+     let dispatch = useDispatch()
+
+     useEffect(() => {
+          dispatch(fetchFoods())
+     }, [])
+
      return (
           <div className="relative z-10">
                <div className="main bg-white px-10 text-black">
