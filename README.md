@@ -17,7 +17,7 @@ Target:
 - [ v] React: Class Component vs Function Component
 - [ v] Mempelajari State menggunakan useState
 - [ v] Mengirim Props baik berupa sebuah state atau function
-- [ ] Event Handling (onClick, onChange, onSubmit)
+- [ v] Event Handling (onClick, onChange, onSubmit)
 - [ ] Conditional Rendering di dalam React
 - [ v] Looping List of Data di dalam React
 - [ v] Lifecycle component menggunakan useEffect
@@ -40,8 +40,8 @@ Target:
 
 - [ v] Lecture - Custom Hooks
 - [ v] Rules of Hooks
-- [ ] Lecture - React-Router
-- [ ] Membuat router user-side (min: home, detail)
+- [ v] Lecture - React-Router
+- [ v] Membuat router user-side (min: home, detail)
 - [ ] Membuat router admin-side (min: login, add admin, CRUD main entitas, CRUD another entitas)
 - [ ] Membuat privateRoute untuk admin
 

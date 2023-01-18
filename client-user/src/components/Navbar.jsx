@@ -11,9 +11,6 @@ function Navbar() {
                          <li>
                               <Link to="/foods" >Foods</Link>
                          </li>
-                         <li>
-                              <a>Yummy</a>
-                         </li>
                     </ul>
                </div>
           </div>
