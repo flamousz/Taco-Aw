@@ -1,11 +1,15 @@
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
+import { Provider } from "react-redux";
+import store from "./stores";
 
 const App = () => {
      return (
-          // RouterProvider menerima sebuah props namanya router ambil dari routers/index.jsx yang tadi sudah  dibuat
-          <RouterProvider router={router} />
+          <Provider store={store}>
+              
+               <RouterProvider router={router} />
+          </Provider>
      );
 };
 

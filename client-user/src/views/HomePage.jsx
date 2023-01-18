@@ -1,11 +1,16 @@
 import Corosel from "../components/Corosel";
 import FoodCard from "../components/FoodCard";
-import useFetch from "../hooks/useFetch";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchFoods } from "../stores/actions/foodAction";
 
 const HomePage = () => {
-     // state untuk menampung user
-     const [users, isLoading] = useFetch("http://localhost:3006/items")
+     let users = useSelector((state) => state.foodReducer.foods);
+     let dispatch = useDispatch();
 
+     useEffect(() => {
+          dispatch(fetchFoods());
+     }, []);
 
      return (
           <div className=" ">
@@ -16,21 +21,21 @@ const HomePage = () => {
                               <h2 className="text-2xl font-extrabold contain pb-8">
                                    FEATURED FAVORITES
                               </h2>
-                              {!isLoading ? (
-                                   <ul
-                                        data-scroll-drag
-                                        className="space-x-5 !list-none flex flex-nowrap overflow-x-auto mb-16 pl-1/24-screen xl:pl-1/10-screen scroll-snap-x md:scroll-snap-none hide-scrollbar cursor-grab"
-                                   >
-                                        {users.map((user) => {
-                                             // return HTML (JSX)
-                                             return (
-                                                  <FoodCard key={user.id} user={user} />
-                                             );
-                                        })}
-                                   </ul>
-                              ) : (
-                                   <h1>please wait</h1>
-                              )}
+
+                              <ul
+                                   data-scroll-drag
+                                   className="space-x-5 !list-none flex flex-nowrap overflow-x-auto mb-16 pl-1/24-screen xl:pl-1/10-screen scroll-snap-x md:scroll-snap-none hide-scrollbar cursor-grab"
+                              >
+                                   {users.map((user) => {
+                                        // return HTML (JSX)
+                                        return (
+                                             <FoodCard
+                                                  key={user.id}
+                                                  user={user}
+                                             />
+                                        );
+                                   })}
+                              </ul>
                          </div>
                     </div>
                </div>
