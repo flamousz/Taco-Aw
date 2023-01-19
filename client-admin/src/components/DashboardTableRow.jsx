@@ -1,24 +1,25 @@
-export default function DashboardTableRow() {
+export default function DashboardTableRow({foods, index}) {
+     console.log(foods,'<< foods dari component table row');
      return (
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-               <td className="px-6 py-4">1</td>
-               <td className="px-6 py-4">CHICKEN QUESADILLA</td>
-               <td className="px-6 py-4">Quesadilla</td>
-               <td className="px-6 py-4">Rp. 33000</td>
-               <td className="px-6 py-4">darwin</td>
+               <td className="px-6 py-4">{index+1}</td>
+               <td className="px-6 py-4">{ foods.name }</td>
+               <td className="px-6 py-4">{foods.Category.name}</td>
+               <td className="px-6 py-4">Rp. {foods.price}</td>
+               <td className="px-6 py-4">{foods.User.name}</td>
                <th
                     scope="row"
                     className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
                >
                     <img
                          className="w-14 h-14 rounded-full"
-                         src="https://www.tacobell.co.id/wp-content/uploads/2020/09/2-Taco-Supreme.jpg"
+                         src={foods.imgUrl}
                          alt="Main Ingredient"
                     />
                     <div className="pl-3">
-                         <div className="text-base font-semibold">flour</div>
+                         <div className="text-base font-semibold">{ foods.Ingredients[0].name }</div>
                          <div className="font-normal text-gray-500">
-                         CHICKEN QUESADILLA
+                         { foods.name }
                          </div>
                     </div>
                </th>

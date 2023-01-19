@@ -1,6 +1,15 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DashboardTableRow from "../components/DashboardTableRow";
+import { fetchFoods } from "../stores/actions/foodAction";
 
 export default function DashboardPage() {
+     let foods = useSelector((state) => state.foodReducer.foods)
+     let dispatch = useDispatch()
+
+     useEffect(() => {
+          dispatch(fetchFoods())
+     }, [])
      return (
           <div className="container flex justify-center ml-10  flex-col">
                <div className="flex justify-between">
@@ -45,7 +54,11 @@ export default function DashboardPage() {
                               </tr>
                          </thead>
                          <tbody>
-                              <DashboardTableRow />
+                              { foods.map((foods, index) => {
+                                   return (
+                                        <DashboardTableRow key={foods.id} foods={foods} index={index} />
+                                   )
+                              }) }
                          </tbody>
                     </table>
                </div>
