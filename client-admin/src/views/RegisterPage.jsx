@@ -1,31 +1,30 @@
 import { useState } from "react";
 
-export default function RegisterPage(register) {
+export default function RegisterPage(visible) {
      const [modals, setModals] = useState(false)
 
-     // }
      
      const registerModal = () => {
           setModals(true)
      }
-
-     if (!modals) {
-          return <h1>dwd</h1>
+     console.log(visible.visible,'<< ini register dari register page');
+     if (!visible.visible || modals) {
+          return 
      }
 
      return (
           <>
+          
           <div className="w-full h-full top-0 bg-opacity-20 bg-slate-700 z-10 absolute"> </div>
           <div className="fixed inset-0 flex flex-col items-center justify-center z-20 px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                   Register New Admin
                               </h1>
                               <form className="space-y-4 md:space-y-6" action="#">
                                    <div>
                                         <label
-                                             for="email"
+                                             htmlFor="email"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Email
@@ -41,7 +40,7 @@ export default function RegisterPage(register) {
                                    </div>
                                    <div>
                                         <label
-                                             for="password"
+                                             htmlFor="password"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Password
@@ -57,7 +56,7 @@ export default function RegisterPage(register) {
                                    </div>
                                    <div>
                                         <label
-                                             for="phoneNumber"
+                                             htmlFor="phoneNumber"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Phone Number
@@ -73,12 +72,12 @@ export default function RegisterPage(register) {
                                    </div>
                                    <div>
                                         <label
-                                             for="address"
+                                             htmlFor="address"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Address
                                         </label>
-                                        <textarea id="address" name="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your address here..."></textarea>
+                                        <textarea id="address" name="address" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your address here..."></textarea>
                                    </div>
                                    <button
                                    onClick={registerModal}

@@ -2,6 +2,7 @@ async function errorHandler(err, req, res, next) {
      let status = 500;
      let message = "Internal server error";
 
+     console.log(err);
      switch (err.name) {
           case "Unauthenticated":
                status = 401;
