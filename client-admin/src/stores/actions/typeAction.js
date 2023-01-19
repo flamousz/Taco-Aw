@@ -1,0 +1,1 @@
+export const FOOD_FETCH_DATA = 'foods/fetchFoods'
