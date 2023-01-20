@@ -10,6 +10,14 @@ export default function DashboardPage() {
      useEffect(() => {
           dispatch(fetchFoods())
      }, [])
+
+     // useEffect(() => {
+     //      if(iserror){
+     //           toast.error(`${err.message}`)
+     //      }
+     // }, [iserror])
+
+
      return (
           <div className="container flex justify-center ml-10  flex-col">
                <div className="flex justify-between">

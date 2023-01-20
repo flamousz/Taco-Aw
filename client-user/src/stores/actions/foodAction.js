@@ -1,5 +1,6 @@
 import { FOOD_DETAIL_FETCH_DATA, FOOD_FETCH_DATA } from "./typeAction";
 
+
 let baseUrl = "http://localhost:3009/items";
 
 export function fetchFoods() {

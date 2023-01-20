@@ -1,17 +1,16 @@
-import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
-import { fetchDetailFoods } from '../stores/actions/foodAction';
-import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchDetailFoods } from "../stores/actions/foodAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const DetailPage = () => {
-    const {id} = useParams()
-     let food = useSelector((state) => state.foodReducer.food)
-     let dispatch = useDispatch()
+     const { id } = useParams();
+     let food = useSelector((state) => state.foodReducer.food);
+     let dispatch = useDispatch();
 
-
-    useEffect(() => {
-          dispatch(fetchDetailFoods(id))   
-    }, [id])
+     useEffect(() => {
+          dispatch(fetchDetailFoods(id));
+     }, [id]);
 
      return (
           <div className=" py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32 bg-white">
@@ -20,9 +19,7 @@ const DetailPage = () => {
                          <h1 className="text-2xl font-extrabold mb-5">
                               {food.name}
                          </h1>
-                         <p className="p-large mb-8">
-                              {food.description}
-                         </p>
+                         <p className="p-large mb-8">{food.description}</p>
                     </div>
                     <div className="xl:text-right">
                          <img

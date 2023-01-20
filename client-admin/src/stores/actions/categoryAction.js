@@ -18,3 +18,36 @@ export function fetchCategory() {
           }
      };
 }
+
+
+export function postCategory(body) {
+     return async () => {
+          try {
+               let data = await fetch(`${baseUrl}/form`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(body)
+                })
+                let convert = await data.json()
+                return convert.message
+                
+          } catch (err) {
+               toast.error(`${err.message}`)
+          }
+     };
+}
+
+export function deleteCategory(id) {
+     return async (dispatch) => {
+          try {
+               let data = await fetch(`${baseUrl}/${id}`, {
+                    method: 'delete'
+                })
+                let convert = await data.json()
+                toast.success(`${convert.message}`)
+                dispatch(fetchCategory())
+          } catch (err) {
+               toast.error(`${err.message}`)
+          }
+     };
+}

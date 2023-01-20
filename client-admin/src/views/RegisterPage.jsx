@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { postUser } from "../stores/actions/userAction";
 
-export default function RegisterPage(visible) {
+export default function RegisterPage(props) {
      const [modals, setModals] = useState(false);
 
      const registerModal = () => {
@@ -30,7 +30,7 @@ export default function RegisterPage(visible) {
           setInputForm(data);
      }
 
-     if (!visible.visible || modals) {
+     if (!props.visible || modals) {
           return;
      }
 
@@ -50,9 +50,14 @@ export default function RegisterPage(visible) {
                                         dispatch(postUser(inputForm))
                                              .then((data) => {
                                                   toast.success(`🦄 ${data} `)
+                                                
                                              })
                                              .catch((err) => {
                                                   toast.error(`${err.message}`)
+                                             })
+                                             .finally(() => {
+                                                  setModals(false)
+                                                  props.setModalsFalse()
                                              })
                                    }} 
                               >
