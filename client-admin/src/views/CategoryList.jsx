@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import CategoryTableRow from "../components/CategoryTableRow";
 import { fetchCategory } from "../stores/actions/categoryAction";
 
@@ -19,12 +20,12 @@ export default function CategoryList () {
              <h2 className="text-2xl font-extrabold contain my-4">
                   Category List
              </h2>
-             <a
-                  href="#"
+             <Link
+                  to='/categories/form'
                   className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-4"
              >
                   + Create new Category
-             </a>
+             </Link>
         </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
