@@ -1,21 +1,20 @@
 import { toast } from "react-toastify";
-import { FOOD_FETCH_DATA } from "./typeAction";
+import { CATEGORY_FETCH_DATA } from "./typeAction";
 
-const baseUrl = "http://localhost:3009/items";
+const baseUrl = "http://localhost:3009/categories";
 
-export function fetchFoods() {
+export function fetchCategory() {
      return async (dispatch) => {
           try {
                let data = await fetch(baseUrl);
                let convert = await data.json();
 
                dispatch({
-                    type: FOOD_FETCH_DATA,
+                    type: CATEGORY_FETCH_DATA,
                     payload: convert,
                });
           } catch (err) {
-            toast.error(`${err.message}`)
-            
+               toast.error(`${err.message}`)
           }
      };
 }
