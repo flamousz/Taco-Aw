@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import foodReducer from './foodReducer'
-
+import foodReducer from "./foodReducer";
+import categoryReducer from "./categoryReducer";
 
 let reducers = combineReducers({
-    foodReducer
-})
+     foodReducer,
+     categoryReducer,
+});
 
-
-export default reducers
+export default reducers;

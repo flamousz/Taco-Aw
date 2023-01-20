@@ -1,8 +1,8 @@
-export default function CategoryTableRow() {
+export default function CategoryTableRow({categories, index}) {
      return (
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-               <td className="px-6 py-4">1</td>
-               <td className="px-6 py-4">Quesadilla</td>
+               <td className="px-6 py-4">{index+1}</td>
+               <td className="px-6 py-4">{categories.name}</td>
                <td className="px-6 py-4">23 feb 2022</td>
                <td className="px-6 py-4">23 feb 2022</td>
                <td className="px-6 py-4 ">

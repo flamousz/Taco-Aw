@@ -1,7 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CategoryTableRow from "../components/CategoryTableRow";
+import { fetchCategory } from "../stores/actions/categoryAction";
+
 
 
 export default function CategoryList () {
+     let categories = useSelector((state) => state.categoryReducer.categories)
+     let dispatch = useDispatch()
+
+     useEffect(() => {
+          dispatch(fetchCategory())
+     }, [])
+
     return (
         <div className="container flex justify-center ml-10  flex-col">
         <div className="flex justify-between">
@@ -37,7 +48,9 @@ export default function CategoryList () {
                        </tr>
                   </thead>
                   <tbody>
-                       <CategoryTableRow />
+                       {categories.map((categories, index) => {
+                         return (<CategoryTableRow key={categories.id} categories={categories} index={index} />)
+                       })}
                   </tbody>
              </table>
         </div>

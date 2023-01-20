@@ -6,11 +6,11 @@ const { User } = require('../models/index')
 class UserController {
     static async register(req, res, next) {
         try {
-            let { email, password, phoneNumber, address, username } = req.body
+            let { email, password, phoneNumber, address, name } = req.body
             const role = 'admin'
-            let userRegister = await User.create({ email, password, role, phoneNumber, address, username })
+            let userRegister = await User.create({ email, password, role, phoneNumber, address, name })
             res.status(201).json({
-                message: `user with id ${userRegister.id} and email ${userRegister.email} has been created`
+                message: `Admin with name ${userRegister.name} and email ${userRegister.email} has been created`
             })
         } catch (err) {
             next(err)
