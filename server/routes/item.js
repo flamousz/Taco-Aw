@@ -4,7 +4,9 @@ const itemRouter = express.Router()
 
 
 itemRouter.get('/', ItemController.getItem)
+itemRouter.post('/', ItemController.postItem)
 itemRouter.get('/:id', ItemController.getDetailItem)
+itemRouter.delete('/:id', ItemController.deleteItem)
 
 
 module.exports = itemRouter
