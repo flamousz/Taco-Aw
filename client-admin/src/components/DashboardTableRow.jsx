@@ -1,6 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import { deleteFood } from '../stores/actions/foodAction';
 
 export default function DashboardTableRow({foods, index}) {
+     let dispatch = useDispatch()
+
+
      return (
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                <td className="px-6 py-4">{index+1}</td>
@@ -42,6 +48,14 @@ export default function DashboardTableRow({foods, index}) {
                     </a>
                     <a
                          href="#"
+                         onClick={(e) => {
+                              dispatch(deleteFood(foods.id))
+                                   .then((data) => {
+                                        toast.success(`${data}`)
+                                   })
+                                   .catch((err) => {
+                                        toast.error(`${err.message}`)
+                                   })}}
                          className="font-medium text-red-600 dark:text-blue-500 hover:underline"
                     >
                          Delete

@@ -19,3 +19,21 @@ export function fetchFoods() {
           }
      };
 }
+
+export function deleteFood(id) {
+     return async (dispatch) => {
+          try {
+               let data = await fetch(`${baseUrl}/${id}`,{
+                    method: 'DELETE'
+               })
+               let convert = await data.json()
+               dispatch(fetchFoods())
+               if (!data.ok) {
+                    throw convert
+               }
+               return convert.message
+          } catch (err) {
+               throw err
+          }
+     }
+}
