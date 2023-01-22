@@ -1,91 +1,155 @@
-const { Category, Item, User, Ingredient, sequelize } = require('../models/index')
-
+const {
+     Category,
+     Item,
+     User,
+     Ingredient,
+     sequelize,
+} = require("../models/index");
 
 class ItemController {
-    static async deleteItem(req, res, next) {
-        try {
-            const {id} = req.params
-            const item = await Item.findByPk(id)
-            if (!item) {
-                throw {
-                    name: "NotFound"
-                }
-            }
-            await Item.destroy({
-                where: {id}
-            })
+     static async deleteItem(req, res, next) {
+          try {
+               const { id } = req.params;
+               const item = await Item.findByPk(id);
+               if (!item) {
+                    throw {
+                         name: "NotFound",
+                    };
+               }
+               await Item.destroy({
+                    where: { id },
+               });
 
-            res.status(200).json({
-                message: `Menu ${item.name} has been deleted`
-            })
-        } catch (err) {
-            next(err)
-        }
-    }
+               res.status(200).json({
+                    message: `Menu ${item.name} has been deleted`,
+               });
+          } catch (err) {
+               next(err);
+          }
+     }
 
+     static async editItem(req, res, next) {
+          try {
+               const { id } = req.params;
 
-    static async postItem(req, res, next) {
-        const t = await sequelize.transaction();
-        try {
-            let { name, description, price, imgUrl, authorId, categoryId, ingredient } = req.body
+               const {
+                    name,
+                    description,
+                    price,
+                    imgUrl,
+                    authorId,
+                    categoryId,
+               } = req.body;
+               if (
+                    !name ||
+                    !description ||
+                    !categoryId ||
+                    !imgUrl ||
+                    !price ||
+                    !authorId
+               ) {
+                    throw { name: "NotFound" };
+               }
 
-            const item = await Item.create({ name, description, price, imgUrl, authorId, categoryId }, {
-                transaction: t
-            })
-            ingredient = ingredient.map((el) => {
-                el.itemId = item.id
-                return el
-            })
-            await Ingredient.bulkCreate(ingredient, { transaction: t })
-            await t.commit()
-            res.status(201).json({message: 'ok'})
+               const item = await Item.findByPk(id);
+               if (!item) {
+                    throw {
+                         name: "NotFound",
+                    };
+               }
 
-
-        } catch (err) {
-            await t.rollback()
-            next(err)
-        }
-    }
-
-    static async getItem(req, res, next) {
-        try {
-            const items = await Item.findAll({
-                include: [
+               await Item.update(
                     {
-                        model: Category,
-                        attributes: ['name']
+                         name,
+                         description,
+                         price,
+                         imgUrl,
+                         authorId,
+                         categoryId
                     },
+                    { where: { id } }
+               );
+
+               res.status(200).json({
+                    message: `Menu ${item.name} has been updated to ${name}`,
+               });
+          } catch (err) {
+               next(err);
+          }
+     }
+
+     static async postItem(req, res, next) {
+          const t = await sequelize.transaction();
+          try {
+               let {
+                    name,
+                    description,
+                    price,
+                    imgUrl,
+                    authorId,
+                    categoryId,
+                    ingredient,
+               } = req.body;
+
+               const item = await Item.create(
+                    { name, description, price, imgUrl, authorId, categoryId },
                     {
-                        model: User,
-                        attributes: ['name']
-                    },
-                    {
-                        model: Ingredient,
-                        attributes: ['name']
+                         transaction: t,
                     }
-                ],
-                order: [['createdAt', 'DESC']]
-            })
+               );
+               ingredient = ingredient.map((el) => {
+                    el.itemId = item.id;
+                    return el;
+               });
+               await Ingredient.bulkCreate(ingredient, { transaction: t });
+               await t.commit();
+               res.status(201).json({
+                    message: `${name} has been add to food list`,
+               });
+          } catch (err) {
+               await t.rollback();
+               next(err);
+          }
+     }
 
-            res.status(200).json(items)
-        } catch (err) {
-            next(err)
-        }
-    }
+     static async getItem(req, res, next) {
+          try {
+               const items = await Item.findAll({
+                    include: [
+                         {
+                              model: Category,
+                              attributes: ["name"],
+                         },
+                         {
+                              model: User,
+                              attributes: ["name"],
+                         },
+                         {
+                              model: Ingredient,
+                              attributes: ["name"],
+                         },
+                    ],
+                    order: [["createdAt", "DESC"]],
+               });
 
-    static async getDetailItem(req, res, next) {
-        try {
-            const {id} = req.params
-            const item = await Item.findByPk(id)
-            if (!item) {
-                throw {name: 'NotFound'}
-            }
-            res.status(200).json(item)
-        } catch (err) {
-            next(err)
-        }
-    }
+               res.status(200).json(items);
+          } catch (err) {
+               next(err);
+          }
+     }
+
+     static async getDetailItem(req, res, next) {
+          try {
+               const { id } = req.params;
+               const item = await Item.findByPk(id);
+               if (!item) {
+                    throw { name: "NotFound" };
+               }
+               res.status(200).json(item);
+          } catch (err) {
+               next(err);
+          }
+     }
 }
 
-
-module.exports = ItemController
+module.exports = ItemController;

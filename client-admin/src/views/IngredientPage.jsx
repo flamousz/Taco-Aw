@@ -9,7 +9,7 @@ export default function IngredientPage() {
           (state) => state.ingredientReducer.ingredient
      );
      let dispatch = useDispatch();
-
+          
      useEffect(() => {
           dispatch(fetchDetailIngredient(id));
      }, [id]);

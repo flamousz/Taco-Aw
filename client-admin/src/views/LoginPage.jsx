@@ -1,4 +1,26 @@
-export default function LoginPage () {
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login } from "../stores/actions/userAction";
+
+export default function LoginPage() {
+     let dispatch = useDispatch();
+     let navigate = useNavigate()
+     const initialValue = {
+          email: "",
+          password: "",
+     };
+     const [inputForm, setInputForm] = useState(initialValue);
+
+     function loginInput(val) {
+          let data = {
+               ...inputForm,
+               [val.target.name]: val.target.value,
+          };
+          setInputForm(data);
+     }
+
      return (
           <section className="bg-gray-50 dark:bg-gray-900">
                <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -18,10 +40,23 @@ export default function LoginPage () {
                               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                    Sign in to your account
                               </h1>
-                              <form className="space-y-4 md:space-y-6" action="#">
+                              <form
+                                   className="space-y-4 md:space-y-6"
+                                   onSubmit={(e) => {
+                                        e.preventDefault();
+                                        dispatch(login(inputForm))
+                                             .then((data) => {
+                                                  toast.success(`🦄 ${data} `);
+                                                  navigate("/")
+                                             })
+                                             .catch((err) => {
+                                                  toast.error(`${err.message}`);
+                                             });
+                                   }}
+                              >
                                    <div>
                                         <label
-                                             for="email"
+                                             htmlFor="email"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Email
@@ -33,11 +68,13 @@ export default function LoginPage () {
                                              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                              placeholder="name@mail.com"
                                              required=""
+                                             value={inputForm.email}
+                                             onChange={loginInput}
                                         />
                                    </div>
                                    <div>
                                         <label
-                                             for="password"
+                                             htmlFor="password"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Password
@@ -49,6 +86,8 @@ export default function LoginPage () {
                                              placeholder="••••••••"
                                              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                              required=""
+                                             value={inputForm.password}
+                                             onChange={loginInput}
                                         />
                                    </div>
                                    <button
@@ -63,4 +102,4 @@ export default function LoginPage () {
                </div>
           </section>
      );
-};
+}

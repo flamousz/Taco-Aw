@@ -19,27 +19,28 @@ class UserController {
 
     static async login(req, res, next) {
         try {
-            let { email, password } = req.body
+            const { email, password } = req.body
             if (!email || !password) {
                 throw ({name: 'EmailOrPasswordRequired'})
             }
 
-            let user = await User.findOne({ where: {email} })
+            const user = await User.findOne({ where: {email} })
             if (!user) {
                 throw ({name: 'InvalidEmailOrPassword'})
             }
 
-            let compared = compareHash(password, user.password)
+            const compared = compareHash(password, user.password)
             if (!compared) {
                 throw ({name: 'InvalidEmailOrPassword'})
             }
 
-            let payload = {
-                id: user.id
+            const payload = {
+                id: user.id,
+                email
             }
-            let id = user.id
-            let role = user.role
-            let access_token = createToken(payload)
+            const id = user.id
+            const role = user.role
+            const access_token = createToken(payload)
             res.status(200).json({ access_token, email, role, id })
         } catch (err) {
             next(err)

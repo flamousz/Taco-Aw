@@ -8,31 +8,40 @@ export function fetchCategory() {
           try {
                let data = await fetch(baseUrl);
                let convert = await data.json();
-
+               if (!data.ok) {
+                    throw convert;
+               }
                dispatch({
                     type: CATEGORY_FETCH_DATA,
                     payload: convert,
                });
+               if (!data.ok) {
+                    throw convert;
+               }
+
+               return convert.message;
           } catch (err) {
-               toast.error(`${err.message}`)
+               throw err;
           }
      };
 }
 
-
 export function postCategory(body) {
-     return async () => {
+     return async (dispatch) => {
           try {
                let data = await fetch(`${baseUrl}/form`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(body)
-                })
-                let convert = await data.json()
-                return convert.message
-                
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
+               });
+               let convert = await data.json();
+               dispatch(fetchCategory());
+               if (!data.ok) {
+                    throw convert;
+               }
+               return convert.message;
           } catch (err) {
-               toast.error(`${err.message}`)
+               throw err;
           }
      };
 }
@@ -41,13 +50,36 @@ export function deleteCategory(id) {
      return async (dispatch) => {
           try {
                let data = await fetch(`${baseUrl}/${id}`, {
-                    method: 'delete'
-                })
-                let convert = await data.json()
-                toast.success(`${convert.message}`)
-                dispatch(fetchCategory())
+                    method: "delete",
+               });
+               let convert = await data.json();
+               toast.success(`${convert.message}`);
+               dispatch(fetchCategory());
           } catch (err) {
-               toast.error(`${err.message}`)
+               toast.error(`${err.message}`);
+          }
+     };
+}
+
+export function editCategory(input) {
+     return async (dispatch) => {
+          console.log(input,'<< ini input dari action');
+          try {
+               const data = await fetch(`${baseUrl}/${input.id}`, {
+                    method: "PUT",
+                    headers: {
+                         "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(input),
+               });
+               const convert = await data.json();
+               if (!data.ok) {
+                    throw convert;
+               }
+               dispatch(fetchCategory());
+               return convert.message;
+          } catch (err) {
+               throw err;
           }
      };
 }

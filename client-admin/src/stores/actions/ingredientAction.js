@@ -16,10 +16,6 @@ export function fetchDetailIngredient(id) {
             })
         } catch (err) {
             toast.error(`${err.message}`)
-            // dispatch({
-            //     type: setISERROR,
-            //     payload: treu
-            // })
         }
     }
 }
