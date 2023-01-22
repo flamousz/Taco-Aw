@@ -14,9 +14,7 @@ export default function CategoryList() {
      const [editCategoryData, setEditCategoryData] = useState({})
 
      function editCategoryHandler(data) {
-          // console.log(data,'<< dari edit category handler');
           setEditCategoryData(data)
-          // console.log(editCategoryData,'<< ini dari EDIT category data');
      }
 
 

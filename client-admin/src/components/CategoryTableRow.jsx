@@ -25,7 +25,6 @@ export default function CategoryTableRow({
                          onClick={() => {
                               setModalstrue();
                               setHeaderNameToEdit();
-                              // console.log(categories,'<< ini dari table row');
                               editCategoryHandler(categories);
                          }}
                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1"

@@ -18,7 +18,6 @@ export default function DashboardPage() {
      useEffect(() => {
           dispatch(fetchFoods())
      }, [])
-     // console.log(foods, '<<ini foods');
 
      //functions
      const setModalstrue = () => {

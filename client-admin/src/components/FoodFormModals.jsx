@@ -188,10 +188,6 @@ export default function FoodFormModals({
                                                                       el,
                                                                       index
                                                                  ) => {
-                                                                      console.log(
-                                                                           index,
-                                                                           "<< ini index"
-                                                                      );
                                                                       return (
                                                                            <div className="">
                                                                                 <input

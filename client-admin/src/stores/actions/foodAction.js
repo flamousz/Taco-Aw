@@ -62,7 +62,6 @@ export function deleteFood(id) {
 export function editFood(input) {
      return async (dispatch) => {
           try {
-               console.log(input,'<<ini inputtttt');
                const data = await fetch(`${baseUrl}/${input.id}`, {
                     method: "PUT",
                     headers: {

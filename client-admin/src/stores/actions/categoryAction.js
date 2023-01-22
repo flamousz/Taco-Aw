@@ -63,7 +63,6 @@ export function deleteCategory(id) {
 
 export function editCategory(input) {
      return async (dispatch) => {
-          console.log(input,'<< ini input dari action');
           try {
                const data = await fetch(`${baseUrl}/${input.id}`, {
                     method: "PUT",

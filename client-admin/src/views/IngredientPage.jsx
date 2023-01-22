@@ -13,7 +13,6 @@ export default function IngredientPage() {
      useEffect(() => {
           dispatch(fetchDetailIngredient(id));
      }, [id]);
-     console.log(ingredient, "<<< ini ingredient");
      if (!ingredient) {
         return (
             <>

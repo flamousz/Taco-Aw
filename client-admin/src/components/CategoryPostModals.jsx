@@ -35,7 +35,6 @@ export default function CategoryPostModals({
                          toast.error(`${err.message}`);
                     });
           } else if (headerName === "edit") {
-               // console.log(inputForm,'<<< ini input form dari cat post modals');
                dispatch(editCategory(inputForm))
                     .then((data) => {
                          toast.success(data)
@@ -49,12 +48,10 @@ export default function CategoryPostModals({
 
      useEffect(() => {
           if (headerName === "edit") {
-               console.log(editCategoryData,'<<ini dari use effect');
                setInputForm(editCategoryData);
           }
      }, [editCategoryData]);
 
-     // console.log(editCategoryData, "<<< editCategoryData");
      if (!visible) {
           return;
      }
