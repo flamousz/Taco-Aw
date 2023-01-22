@@ -1,24 +1,49 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardTableRow from "../components/DashboardTableRow";
 import { fetchFoods } from "../stores/actions/foodAction";
+import FoodFormModals from '../components/FoodFormModals'
 
 export default function DashboardPage() {
      let foods = useSelector((state) => state.foodReducer.foods)
+     let ingredients = useSelector((state) => state.ingredientReducer.ingredient)
      let dispatch = useDispatch()
+
+     //local states
+     const [foodModals, setFoodModals] = useState(false);
+     const [headerName, setHeaderName] = useState('')
+     const [editFoodData, setEditFoodData] = useState({})
+
 
      useEffect(() => {
           dispatch(fetchFoods())
      }, [])
+     // console.log(foods, '<<ini foods');
 
-     // useEffect(() => {
-     //      if(iserror){
-     //           toast.error(`${err.message}`)
-     //      }
-     // }, [iserror])
+     //functions
+     const setModalstrue = () => {
+          setFoodModals(true);
+     };
+     const setModalsFalse = () => {
+          setFoodModals(false);
+     };
+     const editFoodHandler = (data) => {
+          setEditFoodData(data)
+     }
+     const setHeaderNameToEdit = () => {
+          setHeaderName('edit');
+     };
 
 
      return (
+          <>
+          <FoodFormModals 
+               visible={foodModals}
+               setModalsFalse={setModalsFalse}
+               headerName={headerName}
+               editFoodData={editFoodData}
+               
+          />
           <div className="container flex justify-center ml-10  flex-col">
                <div className="flex justify-between">
                     <h2 className="text-2xl font-extrabold contain my-4">
@@ -26,6 +51,10 @@ export default function DashboardPage() {
                     </h2>
                     <a
                          href="#"
+                         onClick={() => {
+                              setModalstrue()
+                              setHeaderName('add')
+                         }}
                          className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-4"
                     >
                          + Create new Food
@@ -62,14 +91,17 @@ export default function DashboardPage() {
                               </tr>
                          </thead>
                          <tbody>
-                              { foods.map((foods, index) => {
+                              { foods.map((food, index) => {
                                    return (
-                                        <DashboardTableRow key={foods.id} foods={foods} index={index} />
+                                        <DashboardTableRow key={foods.id} food={food} index={index}      setHeaderNameToEdit={setHeaderNameToEdit}
+                                        setModalstrue={setModalstrue}
+                                        editFoodHandler={editFoodHandler} />
                                    )
                               }) }
                          </tbody>
                     </table>
                </div>
           </div>
+          </>
      );
 }

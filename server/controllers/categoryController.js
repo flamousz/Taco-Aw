@@ -26,6 +26,30 @@ class CategoryController {
         }
     }
 
+
+    static async putCategory(req, res, next) {
+        try {
+            const {id} = req.params
+            const { name } = req.body
+            const category = await Category.findByPk(id)
+            if (!category) {
+                throw {
+                  name: "NotFound",
+                };
+              }
+
+            await Category.update({name}, {
+                where: {id}
+            })
+            res.status(200).json({
+                message: `${category.name} category has been updated to ${name}`
+            })
+
+        } catch (err) {
+            next(err)
+        }
+    }
+
     static async deleteCategory(req, res, next) {
         try {
             const {id} = req.params

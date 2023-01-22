@@ -5,6 +5,7 @@ const categoryRouter = express.Router()
 categoryRouter.get('/', CategoryController.getCategory)
 categoryRouter.post('/form', CategoryController.postCategory)
 categoryRouter.delete('/:id', CategoryController.deleteCategory)
+categoryRouter.put('/:id', CategoryController.putCategory)
 
 
 

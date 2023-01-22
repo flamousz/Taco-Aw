@@ -13,7 +13,7 @@ export default function PostAdminPage() {
                               >
                                    <div>
                                         <label
-                                             for="name"
+                                             htmlFor="name"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Name
@@ -29,7 +29,7 @@ export default function PostAdminPage() {
                                    </div>
                                    <div>
                                         <label
-                                             for="address"
+                                             htmlFor="address"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Adress
@@ -38,7 +38,7 @@ export default function PostAdminPage() {
                                    </div>
                                    <div>
                                         <label
-                                             for="password"
+                                             htmlFor="password"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Password
@@ -54,7 +54,7 @@ export default function PostAdminPage() {
                                    </div>
                                    <div>
                                         <label
-                                             for="phoneNumber"
+                                             htmlFor="phoneNumber"
                                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >
                                              Phone Number

@@ -3,20 +3,13 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { postUser } from "../stores/actions/userAction";
 
-export default function RegisterPage(props) {
-     const [modals, setModals] = useState(false);
-
-     const registerModal = () => {
-          setModals(true);
-     };
+export default function RegisterModals({ visible, setModalsFalse }) {
      const dispatch = useDispatch();
-
-     
 
      const initialValue = {
           email: "",
           password: "",
-          name:'',
+          name: "",
           phoneNumber: "",
           address: "",
      };
@@ -30,7 +23,7 @@ export default function RegisterPage(props) {
           setInputForm(data);
      }
 
-     if (!props.visible || modals) {
+     if (!visible) {
           return;
      }
 
@@ -46,20 +39,16 @@ export default function RegisterPage(props) {
                               <form
                                    className="space-y-4 md:space-y-6"
                                    onSubmit={(e) => {
-                                        e.preventDefault()
+                                        e.preventDefault();
                                         dispatch(postUser(inputForm))
                                              .then((data) => {
-                                                  toast.success(`🦄 ${data} `)
-                                                
+                                                  toast.success(`🦄 ${data} `);
+                                                  setModalsFalse();
                                              })
                                              .catch((err) => {
-                                                  toast.error(`${err.message}`)
-                                             })
-                                             .finally(() => {
-                                                  setModals(false)
-                                                  props.setModalsFalse()
-                                             })
-                                   }} 
+                                                  toast.error(`${err.message}`);
+                                             });
+                                   }}
                               >
                                    <div>
                                         <label
@@ -150,13 +139,27 @@ export default function RegisterPage(props) {
                                              placeholder="Write your address here..."
                                         ></textarea>
                                    </div>
-                                   <button
-                             
-                                        type="submit"
-                                        className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                   >
-                                        Create an account
-                                   </button>
+                                   <div className="flex justify-center ">
+                                        <div className=" flex col gap-x-5 ">
+                                             <div>
+                                                  <button
+                                                       type="button"
+                                                       onClick={setModalsFalse}
+                                                       className="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                                  >
+                                                       Cancel
+                                                  </button>
+                                             </div>
+                                             <div>
+                                                  <button
+                                                       type="submit"
+                                                       className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                                  >
+                                                       Submit
+                                                  </button>
+                                             </div>
+                                        </div>
+                                   </div>
                               </form>
                          </div>
                     </div>
