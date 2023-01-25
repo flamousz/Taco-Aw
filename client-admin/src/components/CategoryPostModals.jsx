@@ -30,15 +30,17 @@ export default function CategoryPostModals({
                     .then((data) => {
                          toast.success(`🦄🦄 ${data}`);
                          setModalsFalse();
+                         setInputForm(initialValue)
                     })
                     .catch((err) => {
                          toast.error(`${err.message}`);
                     });
-          } else if (headerName === "edit") {
-               dispatch(editCategory(inputForm))
+               } else if (headerName === "edit") {
+                    dispatch(editCategory(inputForm))
                     .then((data) => {
                          toast.success(data)
                          setModalsFalse()
+                         setInputForm(initialValue)
                     })
                     .catch((err) => {
                          toast.error(`${err.message}`)

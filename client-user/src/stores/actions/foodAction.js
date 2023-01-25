@@ -1,7 +1,9 @@
+import { toast } from "react-toastify";
 import { FOOD_DETAIL_FETCH_DATA, FOOD_FETCH_DATA } from "./typeAction";
 
 
-let baseUrl = "http://localhost:3009/items";
+// let baseUrl = "http://localhost:3009/items";
+const baseUrl = "https://taco-aw.foxhub.space/items";
 
 export function fetchFoods() {
      return async (dispatch) => {
@@ -13,7 +15,7 @@ export function fetchFoods() {
                     payload: convert,
                });
           } catch (err) {
-               console.log(err);
+               toast.error(`${err.message}`)
           }
      };
 }

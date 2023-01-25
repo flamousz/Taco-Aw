@@ -44,6 +44,7 @@ export default function RegisterModals({ visible, setModalsFalse }) {
                                              .then((data) => {
                                                   toast.success(`🦄 ${data} `);
                                                   setModalsFalse();
+                                                  setInputForm(initialValue)
                                              })
                                              .catch((err) => {
                                                   toast.error(`${err.message}`);
