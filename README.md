@@ -3,7 +3,7 @@ A website for a taco restaurant consists of a CMS and user-side, with a front-en
 
 
 ## Assignment
-Fullstack
+### Fullstack
 
 ## Tech Stack
 ### Front-End
@@ -20,4 +20,3 @@ Fullstack
 - Supabase
 - Firebase
 
-...
