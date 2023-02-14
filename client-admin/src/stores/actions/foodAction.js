@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import { FOOD_FETCH_DATA } from "./typeAction";
 
-// const baseUrl = "http://localhost:3009/items";
-const baseUrl = "https://taco-aw.foxhub.space/items";
+const baseUrl = "http://localhost:3009/items";
+// const baseUrl = "https://taco-aw.foxhub.space/items";
 
 export function fetchFoods() {
      return async (dispatch) => {
