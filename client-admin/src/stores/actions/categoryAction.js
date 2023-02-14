@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import { CATEGORY_FETCH_DATA } from "./typeAction";
 
-// const baseUrl = "http://localhost:3009/categories";
-const baseUrl = "https://taco-aw.foxhub.space/categories";
+const baseUrl = "http://localhost:3009/categories";
+// const baseUrl = "https://taco-aw.foxhub.space/categories";
 
 export function fetchCategory() {
      return async (dispatch) => {
