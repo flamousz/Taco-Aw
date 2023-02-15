@@ -20,7 +20,7 @@ export function loadingDone() {
 export function fetchFoods() {
      return async (dispatch) => {
           try {
-               // dispatch(loadingStart())
+               dispatch(loadingStart())
                let data = await fetch(baseUrl);
                let convert = await data.json();
                dispatch({
@@ -30,16 +30,16 @@ export function fetchFoods() {
           } catch (err) {
                toast.error(`${err.message}`)
           } 
-          // finally {
-          //      dispatch(loadingDone())
-          // }
+          finally {
+               dispatch(loadingDone())
+          }
      };
 }
 
 export function fetchDetailFoods(id) {
      return async (dispatch) => {
           try {
-               // dispatch(loadingStart())
+               dispatch(loadingStart())
                let data = await fetch(`${baseUrl}/${id}`);
                let convert = await data.json();
                dispatch({
@@ -50,8 +50,8 @@ export function fetchDetailFoods(id) {
           } catch (err) {
             throw err
           } 
-          // finally {
-          //      dispatch(loadingDone())
-          // }
+          finally {
+               dispatch(loadingDone())
+          }
      };
 }

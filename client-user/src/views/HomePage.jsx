@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFoods } from "../stores/actions/foodAction";
 
 const HomePage = () => {
-	let dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const users = useSelector((state) => state.foodReducer.foods);
 	const { isLoading } = useSelector((state) => state.loadingReducer);
 
@@ -18,7 +18,7 @@ const HomePage = () => {
 			{isLoading ? (
 				<div>loading</div>
 			) : (
-				<div className=' '>
+				<div>
 					<Corosel />
 					<div className=' relative z-10'>
 						<div className='main bg-white px-10 text-black'>
