@@ -28,7 +28,7 @@ function Corosel() {
 											className='carousel-item relative w-full'
 										>
 											<img src={user.imgUrl} className='w-full' />
-											<div className='carousel-caption hidden md:block absolute flex justify-center py-8 px-8 text-white'>
+											<div className='carousel-caption  md:block absolute flex justify-center py-8 px-8 text-white'>
 												<h1 className='text-2xl font-extrabold contain '>
 													{user.Category.name} ...
 												</h1>
