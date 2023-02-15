@@ -8,7 +8,9 @@ function Corosel() {
 
      useEffect(() => {
           dispatch(fetchFoods())
-     }, [])
+               .then((data) => {})
+               .catch(err => console.log(err))
+     }, [dispatch])
 
      return (
           <div className="relative z-10">
