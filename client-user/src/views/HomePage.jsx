@@ -3,30 +3,28 @@ import FoodCard from "../components/FoodCard";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFoods } from "../stores/actions/foodAction";
+import TesLoading from "./TesLoading";
 
 const HomePage = () => {
 	const users = useSelector((state) => state.foodReducer.foods);
-	let aw = "false";
 	const { isLoading } = useSelector((state) => state.loadingReducer);
 	const dispatch = useDispatch();
-	console.log(isLoading, "< ini isloading");
 	useEffect(() => {
 		dispatch(fetchFoods());
 	}, []);
-	isLoading ? (aw = "true") : (aw = "false");
 
 	return (
-		<div >
+		<div>
 			{isLoading ? (
-				<div>masih loading</div>
+				<TesLoading/>
 			) : (
 				<>
-					<Corosel />
+					<Corosel users={users} />
 					<div className=' relative z-10'>
 						<div className='main bg-white px-10 text-black'>
 							<div className='py-28'>
 								<h2 className='text-2xl font-extrabold contain pb-8'>
-									FEATURED FAVORITES dan {aw}
+									FEATURED FAVORITES
 								</h2>
 
 								<ul
