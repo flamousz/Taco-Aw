@@ -3,7 +3,7 @@ import FoodCard from "../components/FoodCard";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFoods } from "../stores/actions/foodAction";
-import TesLoading from "./TesLoading";
+import TesLoading from "../components/TesLoading";
 
 const HomePage = () => {
 	const users = useSelector((state) => state.foodReducer.foods);

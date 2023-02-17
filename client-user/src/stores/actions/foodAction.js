@@ -40,6 +40,7 @@ export function fetchFoods() {
 export function fetchDetailFoods(id) {
      return async (dispatch) => {
           try {
+               dispatch(loadingStart())
                let data = await fetch(`${baseUrl}/${id}`);
                let convert = await data.json();
                dispatch({
@@ -49,6 +50,8 @@ export function fetchDetailFoods(id) {
                return convert
           } catch (err) {
             throw err
+          } finally {
+               dispatch(loadingDone())
           }
      };
 }
