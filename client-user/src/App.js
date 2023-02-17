@@ -6,23 +6,25 @@ import store from "./stores";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
-     return (
-          <Provider store={store}>
-               <ToastContainer
-                    position="bottom-left"
-                    autoClose={1700}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-               />
-               <RouterProvider router={router} />
-          </Provider>
-     );
+	return (
+		<Provider store={store}>
+			<div className='App'>
+				<ToastContainer
+					position='bottom-left'
+					autoClose={1700}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme='light'
+				/>
+				<RouterProvider router={router} />
+			</div>
+		</Provider>
+	);
 };
 
 export default App;
