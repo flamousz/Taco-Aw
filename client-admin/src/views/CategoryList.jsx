@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import CategoryTableRow from "../components/CategoryTableRow";
 import { fetchCategory } from "../stores/actions/categoryAction";
 import CategoryPostModals from "../components/CategoryPostModals";
+import LoadingComponent from "../components/LoadingComponent";
 
 export default function CategoryList() {
-     let categories = useSelector((state) => state.categoryReducer.categories);
-     let dispatch = useDispatch();
+     const categories = useSelector((state) => state.categoryReducer.categories);
+     const {isLoading} = useSelector((state) => state.loadingReducer)
+     const dispatch = useDispatch();
 
      //local states
      const [categoryModals, setCategoryModals] = useState(false);
@@ -40,7 +42,11 @@ export default function CategoryList() {
                     headerName={headerName}
                     editCategoryData={editCategoryData}
                />
-               <div className="container flex justify-center ml-10  flex-col">
+               {
+                    isLoading ? (
+                         <LoadingComponent/>
+                    ) : (
+                         <div className="container flex justify-center ml-10  flex-col">
                     <div className="flex justify-between">
                          <h2 className="text-2xl font-extrabold contain my-4">
                               Category List
@@ -94,6 +100,9 @@ export default function CategoryList() {
                          </table>
                     </div>
                </div>
+                    )
+               }
+               
           </>
      );
 }

@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { loadingDone, loadingStart } from "./foodAction";
 import { CATEGORY_FETCH_DATA } from "./typeAction";
 
 const baseUrl = "http://localhost:3009/categories";
@@ -7,6 +8,7 @@ const baseUrl = "http://localhost:3009/categories";
 export function fetchCategory() {
      return async (dispatch) => {
           try {
+               dispatch(loadingStart())
                let data = await fetch(baseUrl);
                let convert = await data.json();
                if (!data.ok) {
@@ -23,6 +25,8 @@ export function fetchCategory() {
                return convert.message;
           } catch (err) {
                throw err;
+          } finally {
+               dispatch(loadingDone())
           }
      };
 }
