@@ -32,6 +32,7 @@ Next, the code imports the express module, as well as a custom middleware functi
 
 The cors middleware is then used to enable Cross-Origin Resource Sharing (CORS) for the server. This allows the server to handle requests from different domains.
 
+
 app.use(express.urlencoded({ extended: true })); is a middleware function used in a Node.js application with Express.js framework. This middleware function is used to parse incoming request bodies in the URL-encoded format.
 
 When a client sends a POST request to the server with a URL-encoded payload, the payload is sent in the request body in the format key=value. The express.urlencoded() middleware function parses the request body and makes the data available in the req.body object.
@@ -53,6 +54,7 @@ will be parsed into an object like this:
     ]
 }
 This middleware function should be used when expecting URL-encoded data in the request body, such as in HTML form submissions.
+
 
 The router object is mounted on the root path of the application using app.use(). This sets up the route handler for incoming requests.
 
