@@ -6,13 +6,13 @@ const baseUrl = "http://localhost:3009/users";
 export function login(body) {
     return async () => {
         try {
-            let data = await fetch(`${baseUrl}/login`, {
+            const data = await fetch(`${baseUrl}/login`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(body)
             })
 
-            let convert = await data.json()
+            const convert = await data.json()
             if (!data.ok) {
                 throw convert
             }
@@ -30,12 +30,12 @@ export function login(body) {
 export function postUser(body) {
     return async () => {
         try {
-            let data = await fetch(`${baseUrl}/register`, {
+            const data = await fetch(`${baseUrl}/register`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(body)
             })
-            let convert = await data.json()
+            const convert = await data.json()
             if (!data.ok) {
                 throw convert
             }

@@ -106,7 +106,6 @@ export default function Navbar() {
                               </div>
                          </div>
                     </nav>
-                    {/* {isModal && <   } */}
                </div>
           </>
      );
